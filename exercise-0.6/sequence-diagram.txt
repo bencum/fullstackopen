@@ -1,0 +1,15 @@
+# Exercise 0.6.
+# To be used via https://www.websequencediagrams.com/
+
+title Creating a Note SPA (URL: https://studies.cs.helsinki.fi/exampleapp/spa)
+
+note over browser:
+Request Body: {"content":"test note","date":"2021-01-31T12:13:59.691Z"}
+end note
+
+note over server:
+Response Body: {"message":"note created"}
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server->browser: HTTP Status Code 201 (Created) JSON Content
