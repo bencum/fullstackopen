@@ -1,0 +1,25 @@
+# Exercise 0.5.
+# To be used via https://www.websequencediagrams.com/
+
+title Viewing Notes SPA (URL: https://studies.cs.helsinki.fi/exampleapp/spa)
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) HTML Content
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) CSS Content (main.css)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) JavaScript Content (spa.js)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+note over server:
+Response Body: [{"content":"list3","date":"2021-01-27T19:22:15.128Z"}, ...]
+end note
+
+server->browser: HTTP Status Code 200 (OK) JSON Content (data.json)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+
+note over server:
+The response HTTP Status Code should be 404 (Not Found), since it erroneously returns HTML Content.
+end note
+
+server->browser: HTTP Status Code 200 (OK) HTML Content
