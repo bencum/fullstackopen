@@ -1,0 +1,31 @@
+# Exercise 0.4.
+# To be used via https://www.websequencediagrams.com/
+
+title Creating a Note (URL: https://studies.cs.helsinki.fi/exampleapp/notes)
+
+note over browser:
+Request Body: note=test+note
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server->browser: HTTP Status Code 302 (Found/Redirect) https://studies.cs.helsinki.fi/exampleapp/notes
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) HTML Content
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) CSS Content (main.css)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server->browser: HTTP Status Code 200/304 (OK/Not Modified) JavaScript Content (main.js)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+
+note over server:
+Response Body: [{"content":"single page app does not reload the whole page","date":"2021-01-22T15:14:36.582Z"}, ...]
+end note
+
+server->browser: HTTP Status Code 200 (OK) JSON Content (data.json)
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+
+note over server:
+The response HTTP Status Code should be 404 (Not Found), since it erroneously returns HTML Content.
+end note
+
+server->browser: HTTP Status Code 200 (OK) HTML Content
